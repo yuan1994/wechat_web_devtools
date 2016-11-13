@@ -1,6 +1,8 @@
 ## WeChat Web DevTools 是什么？
 WeChat Web DevTools 是腾讯官方提供用于微信 Web 开发和微信小程序开发的工具，由于官方只提供了 Windows 和 MacOS 版的工具，很多 Linux 爱好者很苦恼，所以我就折腾了半天把成功贡献给大家
 
+![](http://image.tianpian.net.cn/github/DeepinScrot-1851.png)
+
 ## 下载安装
 ### composer安装：
 composer create-project yuan1994/wechat_web_devtools wechat_web_devtools  --prefer-dist
@@ -70,3 +72,10 @@ wechat_web_devtools &
 
 ## 免责声明
 该微信开发者工具系腾讯旗下产品，版权归腾讯公司所有，如果版权侵犯请联系我
+
+
+![](http://image.tianpian.net.cn/github/DeepinScrot-3334.png)
+
+![](http://image.tianpian.net.cn/github/DeepinScrot-3448.png)
+
+![](http://image.tianpian.net.cn/github/DeepinScrot-3514.png)

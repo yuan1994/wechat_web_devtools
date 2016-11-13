@@ -1,0 +1,20 @@
+{
+  "name": "yuan1994/wechat_web_devtools",
+  "description": "微信开发者工具（wechat_web_devtools）Linux版，支持微信小程序开发和微信网页开发",
+  "type": "project",
+  "keywords": [
+    "wechat_web_devtools",
+    "wechat",
+    "小程序",
+    "微信网页开发"
+  ],
+  "authors": [
+    {
+      "name": "tianpian",
+      "email": "tianpian0805@gmail.com"
+    }
+  ],
+  "config": {
+    "preferred-install": "dist"
+  }
+}
