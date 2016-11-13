@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Wechat Web DevTools
+Comment=The development tools for wechat web develop
+Exec=/opt/tencent/wechat_web_devtools/nw
+Icon=/opt/tencent/wechat_web_devtools/app/images/logo2.png
+Categories=Application;Wechat
+Version=0.10.102800
+Type=Application
+Terminal=0

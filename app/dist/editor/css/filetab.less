@@ -1,0 +1,74 @@
+.icon(@path){
+  @width: image-width(@path);
+  @height: image-height(@path);
+  width: @width;
+  height: @height;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(@path) no-repeat;
+}
+
+.filetab-wrapper {
+  display: flex;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.filetab-toggle-mo {
+  background-color: #e2e2e2;
+  margin-right: 1px;
+  padding: 1px 5px 5px;
+  cursor: pointer;
+
+  &:hover {
+    .icon-mo {
+      .icon("./images/Mo_green.png");
+    }
+  }
+}
+
+.filetab-toggle-tree {
+  background-color: #ecf8eb;
+  margin-right: 1px;
+  padding: 3px 5px 5px;
+
+  &:hover {
+    .icon-tree{
+      .icon("./images/tree_green.png");
+    }
+  }
+}
+
+.filetab {
+  display: flex;
+  overflow-x: auto;
+}
+
+.filetab-list {
+  background-color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 4px 10px 6px;
+  cursor: default;
+  line-height: 1;
+  //min-width: 100px;
+  i {
+    margin-left: 10px;
+  }
+  &:hover {
+    background-color: #ecf8eb;
+  }
+}
+
+.filetab-list_selected {
+  background-color: #ecf8eb;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    border-bottom: 3px solid #48C23D;
+  }
+}

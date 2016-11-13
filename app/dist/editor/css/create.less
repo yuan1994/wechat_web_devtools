@@ -1,0 +1,51 @@
+
+.tree-view-create{
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin-left: 20px;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    box-shadow: 1px 1px 10px #ccc;
+    z-index:10000;
+    &:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 6px;
+        border: 9px solid transparent;
+        border-right-color: #e6e6e6;
+        margin-left: -19px;
+    }
+    &:after{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 6px;
+        border: 9px solid transparent;
+        border-right-color: #ffffff;
+        margin-left: -18px;
+    }
+}
+
+.tree-view-create-item{
+    padding: 10px 15px;
+    cursor: pointer;
+    &:hover{
+        background-color: #ecf8eb;
+    }
+    p{
+        display: flex;
+        align-items: center;
+        i{
+            margin-right: 5px;
+        }
+    }
+}
+
+.tree-view-item-operation a {
+    display: inline-block;
+    vertical-align: 3px;
+    margin: 0 3px;
+}

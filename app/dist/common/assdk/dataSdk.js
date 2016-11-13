@@ -1,0 +1,1 @@
+"use strict";function init(){function t(t,e){i.sendASSDK("authorize",t,e)}function e(t,e){i.sendASSDK("operateWXData",t,e)}var i=require("../../actions/webviewActions.js");_exports={authorize:t,operateWXData:e}}var _exports;init(),module.exports=_exports;
