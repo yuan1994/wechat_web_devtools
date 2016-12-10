@@ -9,7 +9,7 @@
         "toolbar": true,
         "width": 600,
         "height": 480,
-        "frame": false
+        "frame": true
     },
     "inject_js_start": "app/dist/inject/jweixindebug.js",
     "inject_js_end": "app/dist/inject/devtools.js",
