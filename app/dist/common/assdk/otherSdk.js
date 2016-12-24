@@ -1,1 +1,1 @@
-"use strict";function init(){function e(e,o){t.stopPullDownRefresh(e)}var t=require("../../actions/webviewActions.js");_exports={stopPullDownRefresh:e}}var _exports;init(),module.exports=_exports;
+'use strict';var _exports;function init(){const a=require('../../actions/webviewActions.js');_exports={stopPullDownRefresh:function(c,d){a.stopPullDownRefresh(c,d),d({errMsg:'stopPullDownRefresh:ok'})}}}init(),module.exports=_exports;

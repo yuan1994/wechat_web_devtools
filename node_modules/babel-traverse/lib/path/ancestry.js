@@ -13,6 +13,8 @@ exports.getStatementParent = getStatementParent;
 exports.getEarliestCommonAncestorFrom = getEarliestCommonAncestorFrom;
 exports.getDeepestCommonAncestorFrom = getDeepestCommonAncestorFrom;
 exports.getAncestry = getAncestry;
+exports.isAncestor = isAncestor;
+exports.isDescendant = isDescendant;
 exports.inType = inType;
 exports.inShadow = inShadow;
 
@@ -179,6 +181,16 @@ function getAncestry() {
     paths.push(path);
   } while (path = path.parentPath);
   return paths;
+}
+
+function isAncestor(maybeDescendant) {
+  return maybeDescendant.isDescendant(this);
+}
+
+function isDescendant(maybeAncestor) {
+  return !!this.findParent(function (parent) {
+    return parent === maybeAncestor;
+  });
 }
 
 function inType() {

@@ -24,10 +24,6 @@ var _pathIsAbsolute = require("path-is-absolute");
 
 var _pathIsAbsolute2 = _interopRequireDefault(_pathIsAbsolute);
 
-var _pathExists = require("path-exists");
-
-var _pathExists2 = _interopRequireDefault(_pathExists);
-
 var _path = require("path");
 
 var _path2 = _interopRequireDefault(_path);
@@ -48,14 +44,14 @@ var PACKAGE_FILENAME = "package.json";
 function exists(filename) {
   var cached = existsCache[filename];
   if (cached == null) {
-    return existsCache[filename] = _pathExists2.default.sync(filename);
+    return existsCache[filename] = _fs2.default.existsSync(filename);
   } else {
     return cached;
   }
 }
 
 function buildConfigChain() {
-  var opts = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var log = arguments[1];
 
   var filename = opts.filename;
@@ -139,7 +135,7 @@ var ConfigChainBuilder = function () {
   };
 
   ConfigChainBuilder.prototype.addConfig = function addConfig(loc, key) {
-    var json = arguments.length <= 2 || arguments[2] === undefined ? _json2.default : arguments[2];
+    var json = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _json2.default;
 
     if (this.resolvedConfigs.indexOf(loc) >= 0) {
       return false;
@@ -168,10 +164,10 @@ var ConfigChainBuilder = function () {
   };
 
   ConfigChainBuilder.prototype.mergeConfig = function mergeConfig(_ref) {
-    var options = _ref.options;
-    var alias = _ref.alias;
-    var loc = _ref.loc;
-    var dirname = _ref.dirname;
+    var options = _ref.options,
+        alias = _ref.alias,
+        loc = _ref.loc,
+        dirname = _ref.dirname;
 
     if (!options) {
       return false;

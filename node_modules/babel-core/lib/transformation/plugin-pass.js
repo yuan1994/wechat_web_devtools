@@ -28,7 +28,7 @@ var PluginPass = function (_Store) {
   (0, _inherits3.default)(PluginPass, _Store);
 
   function PluginPass(file, plugin) {
-    var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
     (0, _classCallCheck3.default)(this, PluginPass);
 
     var _this = (0, _possibleConstructorReturn3.default)(this, _Store.call(this));

@@ -39,6 +39,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   fields: {}
 });
 
+(0, _index2.default)("Import", {
+  aliases: ["Expression"]
+});
+
 (0, _index2.default)("Decorator", {
   visitor: ["expression"],
   fields: {

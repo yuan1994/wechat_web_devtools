@@ -46,11 +46,11 @@ var Buffer = function () {
 
   Buffer.prototype.append = function append(str) {
     this._flush();
-    var _sourcePosition = this._sourcePosition;
-    var line = _sourcePosition.line;
-    var column = _sourcePosition.column;
-    var filename = _sourcePosition.filename;
-    var identifierName = _sourcePosition.identifierName;
+    var _sourcePosition = this._sourcePosition,
+        line = _sourcePosition.line,
+        column = _sourcePosition.column,
+        filename = _sourcePosition.filename,
+        identifierName = _sourcePosition.identifierName;
 
     this._append(str, line, column, identifierName, filename);
   };
@@ -58,11 +58,11 @@ var Buffer = function () {
   Buffer.prototype.queue = function queue(str) {
     if (str === "\n") while (this._queue.length > 0 && SPACES_RE.test(this._queue[0][0])) {
       this._queue.shift();
-    }var _sourcePosition2 = this._sourcePosition;
-    var line = _sourcePosition2.line;
-    var column = _sourcePosition2.column;
-    var filename = _sourcePosition2.filename;
-    var identifierName = _sourcePosition2.identifierName;
+    }var _sourcePosition2 = this._sourcePosition,
+        line = _sourcePosition2.line,
+        column = _sourcePosition2.column,
+        filename = _sourcePosition2.filename,
+        identifierName = _sourcePosition2.identifierName;
 
     this._queue.unshift([str, line, column, identifierName, filename]);
   };

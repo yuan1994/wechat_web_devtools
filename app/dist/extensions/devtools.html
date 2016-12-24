@@ -32,7 +32,6 @@ function addAppserviceDevtools(){
       "",
       "wxml/index.html",
       function(panel) {
-        console.log(panel)
         window.panel = panel
         var panelWindow
         panel.onShown.addListener(function(win){
@@ -48,13 +47,31 @@ function addAppserviceDevtools(){
       }
     )
 
+    // chrome.devtools.panels.create("Sensor",
+    //   "",
+    //   "Sensor/index.html",
+    //   function(panel) {
+    //     //console.log(panel)
+    //   }
+    // )
+
+    window.addEventListener('message', (event)=>{
+      let data = event.data
+      if(typeof data === 'object' && data.command === 'securityDetails') {
+        chrome.devtools.inspectedWindow.eval(`window.setSecurityDetails('${data.url}', '${JSON.stringify(data)}')`, (res, isErr) => {
+          //console.log(res, isErr)
+        })
+      }
+      //console.log(event)
+    })
+
     // 在选择器旁边加自定义属性
     /*
     var page_getProperties = function() {
       return {
         name: 'linchao',
         team: {
-          sb: "shangyou"
+          "shangyou"
         }
       }
     }

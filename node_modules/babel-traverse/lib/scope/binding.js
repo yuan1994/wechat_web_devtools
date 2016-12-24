@@ -10,11 +10,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Binding = function () {
   function Binding(_ref) {
-    var existing = _ref.existing;
-    var identifier = _ref.identifier;
-    var scope = _ref.scope;
-    var path = _ref.path;
-    var kind = _ref.kind;
+    var existing = _ref.existing,
+        identifier = _ref.identifier,
+        scope = _ref.scope,
+        path = _ref.path,
+        kind = _ref.kind;
     (0, _classCallCheck3.default)(this, Binding);
 
     this.identifier = identifier;

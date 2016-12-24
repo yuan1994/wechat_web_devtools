@@ -186,11 +186,11 @@ var OptionManager = function () {
   OptionManager.prototype.mergeOptions = function mergeOptions(_ref2) {
     var _this = this;
 
-    var rawOpts = _ref2.options;
-    var extendingOpts = _ref2.extending;
-    var alias = _ref2.alias;
-    var loc = _ref2.loc;
-    var dirname = _ref2.dirname;
+    var rawOpts = _ref2.options,
+        extendingOpts = _ref2.extending,
+        alias = _ref2.alias,
+        loc = _ref2.loc,
+        dirname = _ref2.dirname;
 
     alias = alias || "foreign";
     if (!rawOpts) return;
@@ -212,12 +212,13 @@ var OptionManager = function () {
       var option = _config3.default[_key2];
 
       if (!option && this.log) {
-        var pluginOptsInfo = "Check out http://babeljs.io/docs/usage/options/ for more info";
-
         if (_removed2.default[_key2]) {
           this.log.error("Using removed Babel 5 option: " + alias + "." + _key2 + " - " + _removed2.default[_key2].message, ReferenceError);
         } else {
-          this.log.error("Unknown option: " + alias + "." + _key2 + ". " + pluginOptsInfo, ReferenceError);
+          var unknownOptErr = "Unknown option: " + alias + "." + _key2 + ". Check out http://babeljs.io/docs/usage/options/ for more information about options.";
+          var presetConfigErr = "A common cause of this error is the presence of a configuration options object without the corresponding preset name. Example:\n\nInvalid:\n  `{ presets: [{option: value}] }`\nValid:\n  `{ presets: [['presetName', {option: value}]] }`\n\nFor more detailed information on preset configuration, please see http://babeljs.io/docs/plugins/#pluginpresets-options.";
+
+          this.log.error(unknownOptErr + "\n\n" + presetConfigErr, ReferenceError);
         }
       }
     }
@@ -286,8 +287,8 @@ var OptionManager = function () {
           if (!presetLoc) {
             var matches = val.match(/^(@[^/]+)\/(.+)$/);
             if (matches) {
-              var orgName = matches[1];
-              var presetPath = matches[2];
+              var orgName = matches[1],
+                  presetPath = matches[2];
 
               val = orgName + "/babel-preset-" + presetPath;
               presetLoc = (0, _resolve2.default)(val, dirname);
@@ -305,9 +306,9 @@ var OptionManager = function () {
           if (val.default) {
             val = val.default;
           } else {
-            var _val2 = val;
-            var __esModule = _val2.__esModule;
-            var rest = (0, _objectWithoutProperties3.default)(_val2, ["__esModule"]);
+            var _val2 = val,
+                __esModule = _val2.__esModule,
+                rest = (0, _objectWithoutProperties3.default)(_val2, ["__esModule"]);
 
             val = rest;
           }
@@ -354,7 +355,7 @@ var OptionManager = function () {
   };
 
   OptionManager.prototype.init = function init() {
-    var opts = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     for (var _iterator2 = (0, _buildConfigChain2.default)(opts, this.log), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : (0, _getIterator3.default)(_iterator2);;) {
       var _ref3;

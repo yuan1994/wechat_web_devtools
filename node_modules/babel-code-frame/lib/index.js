@@ -3,15 +3,20 @@
 exports.__esModule = true;
 
 exports.default = function (rawLines, lineNumber, colNumber) {
-  var opts = arguments.length <= 3 || arguments[3] === undefined ? {} : arguments[3];
+  var opts = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
   colNumber = Math.max(colNumber, 0);
 
-  var highlighted = opts.highlightCode && _chalk2.default.supportsColor;
+  var highlighted = opts.highlightCode && _chalk2.default.supportsColor || opts.forceColor;
+  var chalk = _chalk2.default;
+  if (opts.forceColor) {
+    chalk = new _chalk2.default.constructor({ enabled: true });
+  }
   var maybeHighlight = function maybeHighlight(chalkFn, string) {
     return highlighted ? chalkFn(string) : string;
   };
-  if (highlighted) rawLines = highlight(rawLines);
+  var defs = getDefs(chalk);
+  if (highlighted) rawLines = highlight(defs, rawLines);
 
   var linesAbove = opts.linesAbove || 2;
   var linesBelow = opts.linesBelow || 3;
@@ -44,7 +49,7 @@ exports.default = function (rawLines, lineNumber, colNumber) {
   }).join("\n");
 
   if (highlighted) {
-    return _chalk2.default.reset(frame);
+    return chalk.reset(frame);
   } else {
     return frame;
   }
@@ -64,20 +69,22 @@ var _chalk2 = _interopRequireDefault(_chalk);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var defs = {
-  keyword: _chalk2.default.cyan,
-  capitalized: _chalk2.default.yellow,
-  jsx_tag: _chalk2.default.yellow,
-  punctuator: _chalk2.default.yellow,
+function getDefs(chalk) {
+  return {
+    keyword: chalk.cyan,
+    capitalized: chalk.yellow,
+    jsx_tag: chalk.yellow,
+    punctuator: chalk.yellow,
 
-  number: _chalk2.default.magenta,
-  string: _chalk2.default.green,
-  regex: _chalk2.default.magenta,
-  comment: _chalk2.default.grey,
-  invalid: _chalk2.default.white.bgRed.bold,
-  gutter: _chalk2.default.grey,
-  marker: _chalk2.default.red.bold
-};
+    number: chalk.magenta,
+    string: chalk.green,
+    regex: chalk.magenta,
+    comment: chalk.grey,
+    invalid: chalk.white.bgRed.bold,
+    gutter: chalk.grey,
+    marker: chalk.red.bold
+  };
+}
 
 var NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 
@@ -86,10 +93,9 @@ var JSX_TAG = /^[a-z][\w-]*$/i;
 var BRACKET = /^[()\[\]{}]$/;
 
 function getTokenType(match) {
-  var _match$slice = match.slice(-2);
-
-  var offset = _match$slice[0];
-  var text = _match$slice[1];
+  var _match$slice = match.slice(-2),
+      offset = _match$slice[0],
+      text = _match$slice[1];
 
   var token = _jsTokens2.default.matchToToken(match);
 
@@ -114,7 +120,7 @@ function getTokenType(match) {
   return token.type;
 }
 
-function highlight(text) {
+function highlight(defs, text) {
   return text.replace(_jsTokens2.default, function () {
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];

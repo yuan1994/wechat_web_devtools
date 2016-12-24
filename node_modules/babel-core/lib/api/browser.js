@@ -110,13 +110,13 @@ Object.defineProperty(exports, "transformFileSync", {
 exports.run = run;
 exports.load = load;
 function run(code) {
-  var opts = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   return new Function((0, _node.transform)(code, opts).code)();
 }
 
 function load(url, callback) {
-  var opts = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+  var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   var hold = arguments[3];
 
   opts.filename = opts.filename || url;

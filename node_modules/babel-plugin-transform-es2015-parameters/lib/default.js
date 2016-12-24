@@ -51,10 +51,22 @@ function hasDefaults(node) {
   return false;
 }
 
+function isSafeBinding(scope, node) {
+  if (!scope.hasOwnBinding(node.name)) return true;
+
+  var _scope$getOwnBinding = scope.getOwnBinding(node.name);
+
+  var kind = _scope$getOwnBinding.kind;
+
+  return kind === "param" || kind === "local";
+}
+
 var iifeVisitor = {
   ReferencedIdentifier: function ReferencedIdentifier(path, state) {
-    var name = path.node.name;
-    if (name === "eval" || path.scope.hasOwnBinding(name) && path.scope.getOwnBinding(name).kind !== "param") {
+    var scope = path.scope;
+    var node = path.node;
+
+    if (node.name === "eval" || !isSafeBinding(scope, node)) {
       state.iife = true;
       path.stop();
     }
@@ -120,7 +132,7 @@ var visitor = exports.visitor = {
       }
 
       if (!state.iife) {
-        if (right.isIdentifier() && scope.hasOwnBinding(right.node.name) && scope.getOwnBinding(right.node.name).kind !== "param") {
+        if (right.isIdentifier() && !isSafeBinding(scope, right.node)) {
           state.iife = true;
         } else {
           right.traverse(iifeVisitor, state);

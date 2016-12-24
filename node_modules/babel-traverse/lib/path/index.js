@@ -74,12 +74,12 @@ var NodePath = function () {
   }
 
   NodePath.get = function get(_ref) {
-    var hub = _ref.hub;
-    var parentPath = _ref.parentPath;
-    var parent = _ref.parent;
-    var container = _ref.container;
-    var listKey = _ref.listKey;
-    var key = _ref.key;
+    var hub = _ref.hub,
+        parentPath = _ref.parentPath,
+        parent = _ref.parent,
+        container = _ref.container,
+        listKey = _ref.listKey,
+        key = _ref.key;
 
     if (!hub && parentPath) {
       hub = parentPath.hub;
@@ -135,7 +135,7 @@ var NodePath = function () {
   };
 
   NodePath.prototype.buildCodeFrameError = function buildCodeFrameError(msg) {
-    var Error = arguments.length <= 1 || arguments[1] === undefined ? SyntaxError : arguments[1];
+    var Error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : SyntaxError;
 
     return this.hub.file.buildCodeFrameError(this.node, msg, Error);
   };

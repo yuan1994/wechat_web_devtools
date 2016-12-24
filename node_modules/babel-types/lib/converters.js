@@ -49,7 +49,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function toComputedKey(node) {
-  var key = arguments.length <= 1 || arguments[1] === undefined ? node.key || node.property : arguments[1];
+  var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : node.key || node.property;
 
   if (!node.computed) {
     if (t.isIdentifier(key)) key = t.stringLiteral(key.name);
@@ -157,7 +157,7 @@ function toSequenceExpression(nodes, scope) {
 }
 
 function toKeyAlias(node) {
-  var key = arguments.length <= 1 || arguments[1] === undefined ? node.key : arguments[1];
+  var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : node.key;
 
   var alias = void 0;
 

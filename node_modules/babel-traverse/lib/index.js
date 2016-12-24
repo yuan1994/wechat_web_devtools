@@ -155,6 +155,9 @@ traverse.clearCache = function () {
   cache.clear();
 };
 
+traverse.clearCache.clearPath = cache.clearPath;
+traverse.clearCache.clearScope = cache.clearScope;
+
 traverse.copyCache = function (source, destination) {
   if (cache.path.has(source)) {
     cache.path.set(destination, cache.path.get(source));

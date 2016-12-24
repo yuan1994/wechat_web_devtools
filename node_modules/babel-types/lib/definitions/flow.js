@@ -136,6 +136,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   aliases: ["Flow", "FlowBaseAnnotation"]
 });
 
+(0, _index2.default)("EmptyTypeAnnotation", {
+  aliases: ["Flow", "FlowBaseAnnotation"]
+});
+
 (0, _index2.default)("NullableTypeAnnotation", {
   visitor: ["typeAnnotation"],
   aliases: ["Flow"],

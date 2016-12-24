@@ -1,7 +1,7 @@
 "use strict";
 
 exports.__esModule = true;
-exports.Class = exports.Function = exports.Identifier = undefined;
+exports.ClassDeclaration = exports.ClassExpression = exports.FunctionDeclaration = exports.ArrowFunctionExpression = exports.FunctionExpression = exports.Identifier = undefined;
 
 var _infererReference = require("./inferer-reference");
 
@@ -163,8 +163,11 @@ function Func() {
   return t.genericTypeAnnotation(t.identifier("Function"));
 }
 
-exports.Function = Func;
-exports.Class = Func;
+exports.FunctionExpression = Func;
+exports.ArrowFunctionExpression = Func;
+exports.FunctionDeclaration = Func;
+exports.ClassExpression = Func;
+exports.ClassDeclaration = Func;
 function CallExpression() {
   return resolveCall(this.get("callee"));
 }

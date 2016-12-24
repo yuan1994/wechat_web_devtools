@@ -246,7 +246,7 @@ function setKey(key) {
 }
 
 function requeue() {
-  var pathToQueue = arguments.length <= 0 || arguments[0] === undefined ? this : arguments[0];
+  var pathToQueue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this;
 
   if (pathToQueue.removed) return;
 

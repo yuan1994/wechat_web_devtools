@@ -66,20 +66,24 @@ function remap(path, key) {
   var currentFunction = void 0;
   var passedShadowFunction = false;
 
-  var fnPath = path.findParent(function (path) {
-    if (path.isProgram() || path.isFunction()) {
-      currentFunction = currentFunction || path;
+  var fnPath = path.find(function (innerPath) {
+    if (innerPath.parentPath && innerPath.parentPath.isClassProperty() && innerPath.key === "value") {
+      return true;
+    }
+    if (path === innerPath) return false;
+    if (innerPath.isProgram() || innerPath.isFunction()) {
+      currentFunction = currentFunction || innerPath;
     }
 
-    if (path.isProgram()) {
+    if (innerPath.isProgram()) {
       passedShadowFunction = true;
 
       return true;
-    } else if (path.isFunction() && !path.isArrowFunctionExpression()) {
+    } else if (innerPath.isFunction() && !innerPath.isArrowFunctionExpression()) {
       if (shadowFunction) {
-        if (path === shadowFunction || path.node === shadowFunction.node) return true;
+        if (innerPath === shadowFunction || innerPath.node === shadowFunction.node) return true;
       } else {
-        if (!path.is("shadow")) return true;
+        if (!innerPath.is("shadow")) return true;
       }
 
       passedShadowFunction = true;

@@ -101,7 +101,7 @@ var _babelPluginTransformRegenerator2 = _interopRequireDefault(_babelPluginTrans
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function preset(context) {
-  var opts = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   var moduleTypes = ["commonjs", "amd", "umd", "systemjs"];
   var loose = false;

@@ -234,7 +234,7 @@ function validateVisitorMethods(path, val) {
 }
 
 function merge(visitors) {
-  var states = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
+  var states = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   var wrapper = arguments[2];
 
   var rootVisitor = {};

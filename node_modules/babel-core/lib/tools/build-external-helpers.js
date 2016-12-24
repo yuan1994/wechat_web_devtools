@@ -3,7 +3,7 @@
 exports.__esModule = true;
 
 exports.default = function (whitelist) {
-  var outputType = arguments.length <= 1 || arguments[1] === undefined ? "global" : arguments[1];
+  var outputType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "global";
 
   var namespace = t.identifier("babelHelpers");
 

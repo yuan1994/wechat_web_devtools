@@ -31,6 +31,11 @@ exports.default = function () {
 
       if (path.parentPath.isCallExpression({ callee: path.node })) {
         path.replaceWith(t.sequenceExpression([t.numericLiteral(0), remap]));
+      } else if (path.isJSXIdentifier() && t.isMemberExpression(remap)) {
+        var object = remap.object;
+        var property = remap.property;
+
+        path.replaceWith(t.JSXMemberExpression(t.JSXIdentifier(object.name), t.JSXIdentifier(property.name)));
       } else {
         path.replaceWith(remap);
       }

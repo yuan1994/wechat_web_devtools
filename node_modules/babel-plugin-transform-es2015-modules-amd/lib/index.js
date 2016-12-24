@@ -1,4 +1,4 @@
-/*istanbul ignore next*/"use strict";
+"use strict";
 
 exports.__esModule = true;
 
@@ -6,8 +6,8 @@ var _create = require("babel-runtime/core-js/object/create");
 
 var _create2 = _interopRequireDefault(_create);
 
-exports.default = function ( /*istanbul ignore next*/_ref) {
-  /*istanbul ignore next*/var t = _ref.types;
+exports.default = function (_ref) {
+  var t = _ref.types;
 
   function isValidRequireCall(path) {
     if (!path.isCallExpression()) return false;
@@ -23,10 +23,10 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
     return true;
   }
 
-  var amdVisitor = { /*istanbul ignore next*/
+  var amdVisitor = {
     ReferencedIdentifier: function ReferencedIdentifier(_ref2) {
-      /*istanbul ignore next*/var node = _ref2.node;
-      /*istanbul ignore next*/var scope = _ref2.scope;
+      var node = _ref2.node;
+      var scope = _ref2.scope;
 
       if (node.name === "exports" && !scope.getBinding("exports")) {
         this.hasExports = true;
@@ -36,12 +36,12 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
         this.hasModule = true;
       }
     },
-    /*istanbul ignore next*/CallExpression: function CallExpression(path) {
+    CallExpression: function CallExpression(path) {
       if (!isValidRequireCall(path)) return;
       this.bareSources.push(path.node.arguments[0]);
       path.remove();
     },
-    /*istanbul ignore next*/VariableDeclarator: function VariableDeclarator(path) {
+    VariableDeclarator: function VariableDeclarator(path) {
       var id = path.get("id");
       if (!id.isIdentifier()) return;
 
@@ -59,12 +59,10 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
   return {
     inherits: require("babel-plugin-transform-es2015-modules-commonjs"),
 
-    /*istanbul ignore next*/pre: function pre() {
-      // source strings
+    pre: function pre() {
       this.sources = [];
-      this.sourceNames = /*istanbul ignore next*/(0, _create2.default)(null);
+      this.sourceNames = (0, _create2.default)(null);
 
-      // bare sources
       this.bareSources = [];
 
       this.hasExports = false;
@@ -73,9 +71,8 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
 
 
     visitor: {
-      Program: { /*istanbul ignore next*/
+      Program: {
         exit: function exit(path) {
-          /*istanbul ignore next*/
           var _this = this;
 
           if (this.ran) return;
@@ -83,15 +80,15 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
 
           path.traverse(amdVisitor, this);
 
-          var params = this.sources.map(function (source) /*istanbul ignore next*/{
+          var params = this.sources.map(function (source) {
             return source[0];
           });
-          var sources = this.sources.map(function (source) /*istanbul ignore next*/{
+          var sources = this.sources.map(function (source) {
             return source[1];
           });
 
           sources = sources.concat(this.bareSources.filter(function (str) {
-            return ! /*istanbul ignore next*/_this.sourceNames[str.value];
+            return !_this.sourceNames[str.value];
           }));
 
           var moduleName = this.getModuleName();
@@ -107,7 +104,7 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
             params.unshift(t.identifier("module"));
           }
 
-          /*istanbul ignore next*/var node = path.node;
+          var node = path.node;
 
           var factory = buildFactory({
             PARAMS: params,
@@ -127,15 +124,14 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
   };
 };
 
-var /*istanbul ignore next*/_babelTemplate = require("babel-template");
+var _babelTemplate = require("babel-template");
 
-/*istanbul ignore next*/
 var _babelTemplate2 = _interopRequireDefault(_babelTemplate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var buildDefine = /*istanbul ignore next*/(0, _babelTemplate2.default)( /*istanbul ignore next*/"\n  define(MODULE_NAME, [SOURCES], FACTORY);\n");
+var buildDefine = (0, _babelTemplate2.default)("\n  define(MODULE_NAME, [SOURCES], FACTORY);\n");
 
-var buildFactory = /*istanbul ignore next*/(0, _babelTemplate2.default)( /*istanbul ignore next*/"\n  (function (PARAMS) {\n    BODY;\n  })\n");
+var buildFactory = (0, _babelTemplate2.default)("\n  (function (PARAMS) {\n    BODY;\n  })\n");
 
-/*istanbul ignore next*/module.exports = exports["default"];
+module.exports = exports["default"];
