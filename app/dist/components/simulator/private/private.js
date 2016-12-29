@@ -1,0 +1,1 @@
+'use strict';var _exports;function init(){const a=require('../../../common/request/request.js');_exports={geolocation:function(c,d){a({url:`${'http://apis.map.qq.com/ws/location/v1/ip'}?key=${'JMRBZ-R4HCD-X674O-PXLN4-B7CLH-42BSB'}`,needToken:-1},(e,f,g)=>{d(e,g)})}}}init(),module.exports=_exports;

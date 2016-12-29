@@ -36,9 +36,9 @@ var visitor = exports.visitor = {
   ReferencedIdentifier: function ReferencedIdentifier(path, state) {
     if (!this.file.opts.tdz) return;
 
-    var node = path.node;
-    var parent = path.parent;
-    var scope = path.scope;
+    var node = path.node,
+        parent = path.parent,
+        scope = path.scope;
 
 
     if (path.parentPath.isFor({ left: node })) return;

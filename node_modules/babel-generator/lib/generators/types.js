@@ -128,21 +128,31 @@ function NullLiteral() {
 
 function NumericLiteral(node) {
   var raw = this.getPossibleRaw(node);
-
-  this.number(raw == null ? node.value + "" : raw);
+  var value = node.value + "";
+  if (raw == null) {
+    this.number(value);
+  } else if (this.format.minified) {
+    this.number(raw.length < value.length ? raw : value);
+  } else {
+    this.number(raw);
+  }
 }
 
 function StringLiteral(node, parent) {
   var raw = this.getPossibleRaw(node);
-  if (raw != null) {
+  if (!this.format.minified && raw != null) {
     this.token(raw);
     return;
   }
 
-  var val = (0, _jsesc2.default)(node.value, {
+  var opts = {
     quotes: t.isJSX(parent) ? "double" : this.format.quotes,
     wrap: true
-  });
+  };
+  if (this.format.jsonCompatibleStrings) {
+    opts.json = true;
+  }
+  var val = (0, _jsesc2.default)(node.value, opts);
 
   return this.token(val);
 }

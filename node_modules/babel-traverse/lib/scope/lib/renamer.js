@@ -108,11 +108,11 @@ var Renamer = function () {
   };
 
   Renamer.prototype.rename = function rename(block) {
-    var binding = this.binding;
-    var oldName = this.oldName;
-    var newName = this.newName;
-    var scope = binding.scope;
-    var path = binding.path;
+    var binding = this.binding,
+        oldName = this.oldName,
+        newName = this.newName;
+    var scope = binding.scope,
+        path = binding.path;
 
 
     var parentDeclar = path.find(function (path) {

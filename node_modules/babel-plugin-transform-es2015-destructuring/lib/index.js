@@ -343,8 +343,8 @@ exports.default = function (_ref) {
         path.insertAfter(t.exportNamedDeclaration(null, specifiers));
       },
       ForXStatement: function ForXStatement(path, file) {
-        var node = path.node;
-        var scope = path.scope;
+        var node = path.node,
+            scope = path.scope;
 
         var left = node.left;
 
@@ -386,8 +386,8 @@ exports.default = function (_ref) {
         block.body = nodes.concat(block.body);
       },
       CatchClause: function CatchClause(_ref6, file) {
-        var node = _ref6.node;
-        var scope = _ref6.scope;
+        var node = _ref6.node,
+            scope = _ref6.scope;
 
         var pattern = node.param;
         if (!t.isPattern(pattern)) return;
@@ -408,8 +408,8 @@ exports.default = function (_ref) {
         node.body.body = nodes.concat(node.body.body);
       },
       AssignmentExpression: function AssignmentExpression(path, file) {
-        var node = path.node;
-        var scope = path.scope;
+        var node = path.node,
+            scope = path.scope;
 
         if (!t.isPattern(node.left)) return;
 
@@ -442,9 +442,9 @@ exports.default = function (_ref) {
         path.replaceWithMultiple(nodes);
       },
       VariableDeclaration: function VariableDeclaration(path, file) {
-        var node = path.node;
-        var scope = path.scope;
-        var parent = path.parent;
+        var node = path.node,
+            scope = path.scope,
+            parent = path.parent;
 
         if (t.isForXStatement(parent)) return;
         if (!parent || !path.container) return;
@@ -478,7 +478,72 @@ exports.default = function (_ref) {
           }
         }
 
-        path.replaceWithMultiple(nodes);
+        var nodesOut = [];
+        for (var _iterator5 = nodes, _isArray5 = Array.isArray(_iterator5), _i5 = 0, _iterator5 = _isArray5 ? _iterator5 : (0, _getIterator3.default)(_iterator5);;) {
+          var _ref7;
+
+          if (_isArray5) {
+            if (_i5 >= _iterator5.length) break;
+            _ref7 = _iterator5[_i5++];
+          } else {
+            _i5 = _iterator5.next();
+            if (_i5.done) break;
+            _ref7 = _i5.value;
+          }
+
+          var _node = _ref7;
+
+          var tail = nodesOut[nodesOut.length - 1];
+          if (tail && t.isVariableDeclaration(tail) && t.isVariableDeclaration(_node) && tail.kind === _node.kind) {
+            var _tail$declarations;
+
+            (_tail$declarations = tail.declarations).push.apply(_tail$declarations, _node.declarations);
+          } else {
+            nodesOut.push(_node);
+          }
+        }
+
+        for (var _iterator6 = nodesOut, _isArray6 = Array.isArray(_iterator6), _i6 = 0, _iterator6 = _isArray6 ? _iterator6 : (0, _getIterator3.default)(_iterator6);;) {
+          var _ref8;
+
+          if (_isArray6) {
+            if (_i6 >= _iterator6.length) break;
+            _ref8 = _iterator6[_i6++];
+          } else {
+            _i6 = _iterator6.next();
+            if (_i6.done) break;
+            _ref8 = _i6.value;
+          }
+
+          var nodeOut = _ref8;
+
+          if (!nodeOut.declarations) continue;
+          for (var _iterator7 = nodeOut.declarations, _isArray7 = Array.isArray(_iterator7), _i7 = 0, _iterator7 = _isArray7 ? _iterator7 : (0, _getIterator3.default)(_iterator7);;) {
+            var _ref9;
+
+            if (_isArray7) {
+              if (_i7 >= _iterator7.length) break;
+              _ref9 = _iterator7[_i7++];
+            } else {
+              _i7 = _iterator7.next();
+              if (_i7.done) break;
+              _ref9 = _i7.value;
+            }
+
+            var declaration = _ref9;
+            var name = declaration.id.name;
+
+            if (scope.bindings[name]) {
+              scope.bindings[name].kind = nodeOut.kind;
+            }
+          }
+        }
+
+        if (nodesOut.length === 1) {
+          path.replaceWith(nodesOut[0]);
+        } else {
+          path.replaceWithMultiple(nodesOut);
+        }
       }
     }
   };

@@ -118,8 +118,6 @@ var _babelTemplate2 = _interopRequireDefault(_babelTemplate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint max-len: 0 */
-
 var buildPrerequisiteAssignment = (0, _babelTemplate2.default)("\n  GLOBAL_REFERENCE = GLOBAL_REFERENCE || {}\n");
 
 var buildGlobalExport = (0, _babelTemplate2.default)("\n  var mod = { exports: {} };\n  factory(BROWSER_ARGUMENTS);\n  PREREQUISITE_ASSIGNMENTS\n  GLOBAL_TO_ASSIGN = mod.exports;\n");

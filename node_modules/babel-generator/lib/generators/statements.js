@@ -147,7 +147,7 @@ function DoWhileStatement(node) {
 }
 
 function buildLabelStatement(prefix) {
-  var key = arguments.length <= 1 || arguments[1] === undefined ? "label" : arguments[1];
+  var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "label";
 
   return function (node) {
     this.word(prefix);

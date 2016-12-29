@@ -1,0 +1,124 @@
+.icon(@path) {
+  @width: image-width(@path);
+  @height: image-height(@path);
+  width: @width;
+  height: @height;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(@path) no-repeat;
+}
+
+.search-dialog {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  //transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 10px #ccc;
+}
+
+.search-dialog-close-icon {
+  .icon("./images/closeP_grey.png");
+}
+
+.search-dialog-hd {
+  background-color: #F0F0F0;
+  padding: 5px 15px 10px;
+}
+
+.search-dialog-title {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  h3 {
+    font-weight: normal;
+    font-size: 16px;
+  }
+  a{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 0 10px 10px;
+  }
+}
+
+.search-dialog-keyword {
+  input {
+    border: 1px solid #d9d9d9;
+    outline: 0;
+    padding: 5px 10px;
+    width: 300px;
+  }
+}
+
+.search-dialog-bd {
+  padding: 15px;
+  color: #646464;
+}
+
+.search-dialog-option-group {
+  margin-bottom: 15px;
+}
+
+.search-dialog-option-title {
+  h4 {
+    font-weight: normal;
+    font-size: 16px;
+  }
+}
+
+.search-dialog-option-content {
+}
+
+.search-dialog-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 5px 0;
+
+  .search-dialog-checkbox-icon, .search-dialog-radio-icon {
+    margin-right: 5px;
+  }
+
+  input[type=checkbox] {
+    position: absolute;
+    left: -999em;
+    top: -999em;
+
+    &:checked + .search-dialog-checkbox-icon {
+      .icon("./images/checkbox_1.png");
+    }
+  }
+
+  input[type=radio] {
+    position: absolute;
+    left: -999em;
+    top: -999em;
+
+    &:checked + .search-dialog-radio-icon {
+      .icon("./images/radio-selected.png");
+    }
+  }
+}
+
+.search-dialog-checkbox-icon {
+  .icon("./images/checkbox_0.png");
+}
+
+.search-dialog-radio-icon {
+  .icon("./images/radio.png");
+}
+
+.search-dialog-scope {
+  padding-left: 25px;
+  input {
+    border: 1px solid #d9d9d9;
+    outline: 0;
+    padding: 5px 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

@@ -66,6 +66,7 @@ function ClassProperty(node) {
     this.print(node.key, node);
     this.token("]");
   } else {
+    this._variance(node);
     this.print(node.key, node);
   }
   this.print(node.typeAnnotation, node);

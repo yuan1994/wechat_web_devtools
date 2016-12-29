@@ -195,7 +195,7 @@ function chain() {
 }
 
 function defineType(type) {
-  var opts = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   var inherits = opts.inherits && store[opts.inherits] || {};
 

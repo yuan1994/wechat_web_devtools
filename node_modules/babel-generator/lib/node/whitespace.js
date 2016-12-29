@@ -21,7 +21,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function crawl(node) {
-  var state = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var state = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   if (t.isMemberExpression(node)) {
     crawl(node.object, state);

@@ -51,10 +51,6 @@ var _pluginPass = require("../plugin-pass");
 
 var _pluginPass2 = _interopRequireDefault(_pluginPass);
 
-var _shebangRegex = require("shebang-regex");
-
-var _shebangRegex2 = _interopRequireDefault(_shebangRegex);
-
 var _babelTraverse = require("babel-traverse");
 
 var _babelTraverse2 = _interopRequireDefault(_babelTraverse);
@@ -113,6 +109,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var shebangRegex = /^#!.*/;
+
 var INTERNAL_PLUGINS = [[_blockHoist2.default], [_shadowFunctions2.default]];
 
 var errorVisitor = {
@@ -129,7 +127,7 @@ var File = function (_Store) {
   (0, _inherits3.default)(File, _Store);
 
   function File() {
-    var opts = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var pipeline = arguments[1];
     (0, _classCallCheck3.default)(this, File);
 
@@ -141,10 +139,7 @@ var File = function (_Store) {
     _this.opts = _this.initOptions(opts);
 
     _this.parserOpts = {
-      highlightCode: _this.opts.highlightCode,
-      nonStandard: _this.opts.nonStandard,
       sourceType: _this.opts.sourceType,
-      filename: _this.opts.filename,
       sourceFileName: _this.opts.filename,
       plugins: []
     };
@@ -278,8 +273,8 @@ var File = function (_Store) {
       }
 
       var ref = _ref2;
-      var plugin = ref[0];
-      var pluginOpts = ref[1];
+      var plugin = ref[0],
+          pluginOpts = ref[1];
 
 
       currentPluginVisitors.push(plugin.visitor);
@@ -340,7 +335,7 @@ var File = function (_Store) {
   };
 
   File.prototype.addImport = function addImport(source, imported) {
-    var name = arguments.length <= 2 || arguments[2] === undefined ? imported : arguments[2];
+    var name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : imported;
 
     var alias = source + ":" + imported;
     var id = this.dynamicImportIds[alias];
@@ -429,7 +424,7 @@ var File = function (_Store) {
   };
 
   File.prototype.buildCodeFrameError = function buildCodeFrameError(node, msg) {
-    var Error = arguments.length <= 2 || arguments[2] === undefined ? SyntaxError : arguments[2];
+    var Error = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : SyntaxError;
 
     var loc = node && (node.loc || node._loc);
 
@@ -659,18 +654,18 @@ var File = function (_Store) {
   };
 
   File.prototype.parseShebang = function parseShebang() {
-    var shebangMatch = _shebangRegex2.default.exec(this.code);
+    var shebangMatch = shebangRegex.exec(this.code);
     if (shebangMatch) {
       this.shebang = shebangMatch[0];
-      this.code = this.code.replace(_shebangRegex2.default, "");
+      this.code = this.code.replace(shebangRegex, "");
     }
   };
 
   File.prototype.makeResult = function makeResult(_ref4) {
-    var code = _ref4.code;
-    var map = _ref4.map;
-    var ast = _ref4.ast;
-    var ignored = _ref4.ignored;
+    var code = _ref4.code,
+        map = _ref4.map,
+        ast = _ref4.ast,
+        ignored = _ref4.ignored;
 
     var result = {
       metadata: null,

@@ -7,7 +7,7 @@ var _typeof2 = require("babel-runtime/helpers/typeof");
 var _typeof3 = _interopRequireDefault(_typeof2);
 
 exports.default = function (loc) {
-  var relative = arguments.length <= 1 || arguments[1] === undefined ? process.cwd() : arguments[1];
+  var relative = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : process.cwd();
 
   if ((typeof _module2.default === "undefined" ? "undefined" : (0, _typeof3.default)(_module2.default)) === "object") return null;
 

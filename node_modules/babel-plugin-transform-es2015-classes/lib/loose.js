@@ -50,6 +50,7 @@ var LooseClassTransformer = function (_VanillaTransformer) {
       var methodName = t.memberExpression(classRef, node.key, node.computed || t.isLiteral(node.key));
 
       var func = t.functionExpression(null, node.params, node.body, node.generator, node.async);
+      func.returnType = node.returnType;
       var key = t.toComputedKey(node, node.key);
       if (t.isStringLiteral(key)) {
         func = (0, _babelHelperFunctionName2.default)({

@@ -56,13 +56,26 @@
   }
 
   .element-sep {
-    width: 6px;
+    width: 12px;
     height: 100%;
     cursor: ew-resize;
+    position: relative;
+    transform: translateX(50%);
+    z-index: 1024;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 100%;
+      width: 1px;
+      background-color: #a3a3a3;
+    }
   }
 
   .attr-pannel {
-    border-left: 1px solid #a3a3a3;
+    //border-left: 1px solid #a3a3a3;
     display: flex;
     flex-direction: column;
   }
@@ -211,10 +224,22 @@
 
   .attr-css-file {
     color: #888;
-    float: right;
-    margin-right: 5px;
+    margin-left: auto;
     cursor: pointer;
     text-decoration: underline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .attr-item-selector {
+    display: flex;
+
+    div {
+      &:not(.attr-css-file) {
+        margin-right: 10px;
+      }
+    }
   }
 
   .attr-panel-header {
@@ -291,7 +316,7 @@
   }
 
   .attr-item-declaration {
-    padding-left: 15px;
+    padding-left: 20px;
     &:hover {
       .attr-item-checkbox {
         display: block;
@@ -306,5 +331,17 @@
     display: none;
     min-width: 10px;
     outline: none;
+  }
+
+  .attr-item-property-input.node-input {
+    height: 8px;
+    margin-left: 10px;
+    margin-right: -3.5px;
+  }
+
+  .attr-item-property-input.node-text-input {
+    height: 8px;
+    margin-right: -0.5px;
+    margin-left: -2.5px;
   }
 }

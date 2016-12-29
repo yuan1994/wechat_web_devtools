@@ -12,10 +12,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var ReferencedIdentifier = exports.ReferencedIdentifier = {
   types: ["Identifier", "JSXIdentifier"],
   checkPath: function checkPath(_ref, opts) {
-    var node = _ref.node;
-    var parent = _ref.parent;
+    var node = _ref.node,
+        parent = _ref.parent;
 
-    if (!t.isIdentifier(node, opts)) {
+    if (!t.isIdentifier(node, opts) && !t.isJSXMemberExpression(parent, opts)) {
       if (t.isJSXIdentifier(node, opts)) {
         if (_babelTypes.react.isCompatTag(node.name)) return false;
       } else {
@@ -30,8 +30,8 @@ var ReferencedIdentifier = exports.ReferencedIdentifier = {
 var ReferencedMemberExpression = exports.ReferencedMemberExpression = {
   types: ["MemberExpression"],
   checkPath: function checkPath(_ref2) {
-    var node = _ref2.node;
-    var parent = _ref2.parent;
+    var node = _ref2.node,
+        parent = _ref2.parent;
 
     return t.isMemberExpression(node) && t.isReferenced(node, parent);
   }
@@ -40,8 +40,8 @@ var ReferencedMemberExpression = exports.ReferencedMemberExpression = {
 var BindingIdentifier = exports.BindingIdentifier = {
   types: ["Identifier"],
   checkPath: function checkPath(_ref3) {
-    var node = _ref3.node;
-    var parent = _ref3.parent;
+    var node = _ref3.node,
+        parent = _ref3.parent;
 
     return t.isIdentifier(node) && t.isBinding(node, parent);
   }
@@ -50,8 +50,8 @@ var BindingIdentifier = exports.BindingIdentifier = {
 var Statement = exports.Statement = {
   types: ["Statement"],
   checkPath: function checkPath(_ref4) {
-    var node = _ref4.node;
-    var parent = _ref4.parent;
+    var node = _ref4.node,
+        parent = _ref4.parent;
 
     if (t.isStatement(node)) {
       if (t.isVariableDeclaration(node)) {

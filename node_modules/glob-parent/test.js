@@ -19,4 +19,10 @@ describe('glob-parent', function() {
     assert.equal(gp('path/**/*'), 'path');
     assert.equal(gp('path/**/subdir/foo.*'), 'path');
   });
+
+  it('should return parent dirname from non-glob paths', function() {
+    assert.equal(gp('path/foo/bar.js'), 'path/foo');
+    assert.equal(gp('path/foo/'), 'path/foo');
+    assert.equal(gp('path/foo'), 'path');
+  });
 });

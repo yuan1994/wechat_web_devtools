@@ -7,7 +7,7 @@ var _stringify = require("babel-runtime/core-js/json/stringify");
 var _stringify2 = _interopRequireDefault(_stringify);
 
 exports.default = function () {
-  var opts = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
   if (opts.only != null) only = _babelCore.util.arrayify(opts.only, _babelCore.util.regexify);
   if (opts.ignore != null) ignore = _babelCore.util.arrayify(opts.ignore, _babelCore.util.regexify);

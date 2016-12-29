@@ -138,10 +138,10 @@ function booleanify(val) {
 }
 
 function shouldIgnore(filename) {
-  var ignore = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
+  var ignore = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   var only = arguments[2];
 
-  filename = (0, _slash2.default)(filename);
+  filename = filename.replace(/\\/g, "/");
 
   if (only) {
     for (var _iterator = only, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0, _getIterator3.default)(_iterator);;) {

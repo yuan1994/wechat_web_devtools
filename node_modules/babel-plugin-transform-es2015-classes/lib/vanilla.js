@@ -166,7 +166,7 @@ var ClassTransformer = function () {
   };
 
   ClassTransformer.prototype.pushToMap = function pushToMap(node, enumerable) {
-    var kind = arguments.length <= 2 || arguments[2] === undefined ? "value" : arguments[2];
+    var kind = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "value";
     var scope = arguments[3];
 
     var mutatorMap = void 0;
