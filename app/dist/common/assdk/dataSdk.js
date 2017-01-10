@@ -1,1 +1,0 @@
-'use strict';var _exports;function init(){const a=require('../../actions/webviewActions.js');_exports={authorize:function(c,d){a.sendASSDK('authorize',c,d)},operateWXData:function(c,d){a.sendASSDK('operateWXData',c,d)}}}init(),module.exports=_exports;
