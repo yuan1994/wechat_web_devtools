@@ -1,3 +1,20 @@
+# 说明
+
+仓库中以后只放微信小程序ide代码，不再放`nwjs`文件。
+朋友们可以自行到[nwjs](https://github.com/nwjs/nw.js)官网版本[下载地址](https://dl.nwjs.io/)选择对应版本下载。
+`nwjs`解压即可使用。
+将下载到的`package.nw`文件夹放到`nwjs`目录下，控制台运行`./nw`即可。
+如果需要作启动图标，仓库中的`wechat_web_devtools.desktop`内容可做参考。
+
+# 更新说明
+
+## 20170110
+
+更新版本为：0.12.130400；删除不需要的文件（nwjs）
+nwjs版本为：nwjs-sdk-v0.19.4
+
+***
+
 ## WeChat Web DevTools 是什么？
 WeChat Web DevTools 是腾讯官方提供用于微信 Web 开发和微信小程序开发的工具，由于官方只提供了 Windows 和 MacOS 版的工具，很多 Linux 爱好者很苦恼，所以我就折腾了半天把成功贡献给大家
 
