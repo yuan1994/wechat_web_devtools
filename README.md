@@ -21,6 +21,23 @@ mv wechat_web_devtools-master wechat_web_devtools
 ```
 > 直接使用 git 克隆或者 composer 安装的可以省去此步骤，因为下载后的文件名就是 wechat_web_devtools
 
+
+##  install
+
+可使用安装脚本安装
+```
+sudo ./install
+```
+
+卸载软件
+```
+cat install.log | xargs sudo rm
+sudo rm -r /opt/tencent/wechat_web_devtools
+```
+
+手动安装如下
+
+
 2. 创建文件夹
 ```
 sudo mkdir /opt/tencent/
@@ -39,12 +56,14 @@ sudo chown -R tianpian.tianpian /opt/tencent
 
 5. 启动软件
 ```
-/opt/tencent/wechat_web_devtools/nw
+/opt/tencent/wechat_web_devtools/wechat_web_devtools
 ```
 
 至此最新版微信开发者工具就能正常运行啦，如果有问题请提交 issues ，请上传截图或者粘贴上终端的错误信息
 
 > 以上命令都在 ubuntu 14.04 上测试通过
+
+archlinux 正常运行
 
 ## 快捷启动
 ### 桌面快捷启动图标（在 ubuntu 14.04 系统上测试的）
@@ -57,7 +76,7 @@ sudo mv /opt/tencent/wechat_web_devtools/wechat_web_devtools.desktop /usr/share/
 ### 终端启动
 ```
 // 建立软链接
-sudo ln -s /opt/tencent/wechat_web_devtools/nw /usr/local/bin/wechat_web_devtools
+sudo ln -s /opt/tencent/wechat_web_devtools/wechat_web_devtools /usr/local/bin/wechat_web_devtools
 // 使用命令启动
 wechat_web_devtools &
 ```
