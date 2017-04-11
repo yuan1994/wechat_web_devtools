@@ -1,1 +1,0 @@
-"use strict";module.exports={default_tabheight:56,default_backgroundColor:"#ffffff",default_navigationBarTextStyle:"white",default_navigationBarBackgroundColor:"#000000",default_tabBarBorderBlackColor:"rgba(0, 0, 0, 0.33)",default_tabBarBorderWhiteColor:"rgba(255, 255, 255, 0.33)"};

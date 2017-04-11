@@ -1,0 +1,77 @@
+{
+  "name": "anyproxy",
+  "version": "3.8.1",
+  "description": "A fully configurable proxy in NodeJS, which can handle HTTPS requests perfectly.",
+  "main": "proxy.js",
+  "bin": {
+    "anyproxy": "bin.js"
+  },
+  "dependencies": {
+    "async": "~0.9.0",
+    "async-task-mgr": ">=1.1.0",
+    "body-parser": "^1.13.1",
+    "colorful": "^2.1.0",
+    "commander": "~2.3.0",
+    "compression": "^1.4.4",
+    "express": "^4.8.5",
+    "iconv-lite": "^0.4.6",
+    "ip": "^0.3.2",
+    "juicer": "^0.6.6-stable",
+    "nedb": "^0.11.0",
+    "npm": "^2.7.0",
+    "promise": "^7.0.4",
+    "qrcode-npm": "0.0.3",
+    "stream-throttle": "^0.1.3",
+    "ws": "^0.4.32"
+  },
+  "devDependencies": {
+    "proxy-eval": ">=1.1.2"
+  },
+  "scripts": {
+    "test": "sh test.sh"
+  },
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaba/anyproxy"
+  },
+  "author": {
+    "name": "ottomao@gmail.com"
+  },
+  "license": "ISC",
+  "gitHead": "225edd231710701e9a785349b66e53558771a973",
+  "bugs": {
+    "url": "https://github.com/alibaba/anyproxy/issues"
+  },
+  "homepage": "https://github.com/alibaba/anyproxy",
+  "_id": "anyproxy@3.8.1",
+  "_shasum": "c5cd0bd72cfdbd51eec348adf75d47f82a4d689a",
+  "_from": "anyproxy@latest",
+  "_npmVersion": "2.3.0",
+  "_nodeVersion": "1.0.4",
+  "_npmUser": {
+    "name": "ottomao",
+    "email": "ottomao@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "alexyan",
+      "email": "5918760@gmail.com"
+    },
+    {
+      "name": "ottomao",
+      "email": "ottomao@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "c5cd0bd72cfdbd51eec348adf75d47f82a4d689a",
+    "size": 962909,
+    "noattachment": false,
+    "key": "/anyproxy/-/anyproxy-3.8.1.tgz",
+    "tarball": "http://r.tnpm.oa.com/anyproxy/download/anyproxy-3.8.1.tgz"
+  },
+  "directories": {},
+  "publish_time": 1447913112195,
+  "_cnpm_publish_time": 1447913112195,
+  "_resolved": "http://r.tnpm.oa.com/anyproxy/download/anyproxy-3.8.1.tgz"
+}

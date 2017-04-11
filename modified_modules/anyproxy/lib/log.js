@@ -1,0 +1,1 @@
+"use strict";function setPrintStatus(t){ifPrint=!!t}function printLog(t,i){if(ifPrint){var o=t;console.log(o)}}var ifPrint=!0;module.exports.printLog=printLog,module.exports.setPrintStatus=setPrintStatus,module.exports.T_TIP=0,module.exports.T_ERR=1;

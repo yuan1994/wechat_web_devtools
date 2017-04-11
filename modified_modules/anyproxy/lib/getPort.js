@@ -1,0 +1,1 @@
+"use strict";function getPort(e){var r=portrange;++portrange;var t=require("net").createServer();t.listen(r,function(o){t.once("close",function(){e(r)}),t.close()}),t.on("error",function(r){getPort(e)})}var portrange=4e4;module.exports=getPort;

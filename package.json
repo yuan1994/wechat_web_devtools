@@ -1,42 +1,28 @@
 {
   "main": "app/html/index.html",
-  "name": "微信web开发者工具",
-  "appname": "wechatwebdevtools",
-  "version": "0.15.152900",
+  "name": "微信web开发者工具old",
+  "version": "0.7.0",
   "window": {
-    "title": "微信web开发者工具 v0.15.152900",
-    "icon": "./app/images/logo2.png",
-    "toolbar": true,
-    "width": 600,
-    "height": 480,
-    "frame": true
+    "title": "微信web开发者工具 v0.7.0",
+    "icon": "./app/images/icon.png",
+    "width": 799,
+    "height": 799,
+    "frame": true,
+    "toolbar": true
   },
   "inject_js_start": "app/dist/inject/jweixindebug.js",
   "inject_js_end": "app/dist/inject/devtools.js",
-  "chromium-args": "--disable-devtools -ignore-certificate-errors -load-extension=./app/dist/extensions/",
-  "node-remote": "http://*.appservice.open.weixin.qq.com/*",
+  "chromium-args": "-ignore-certificate-errors",
   "webview": {
-    "partitions": [
-      {
-        "name": "trusted",
-        "accessible_resources": [
-          "<all_urls>"
-        ]
-      },
-      {
-        "name": "devtools",
-        "accessible_resources": [
-          "<all_urls>"
-        ]
-      },
-      {
-        "name": "editor",
-        "accessible_resources": [
-          "<all_urls>"
-        ]
-      }
-    ]
-  },
-  "devDependencies": {},
-  "beta": false
+     "partitions": [
+        {
+          "name": "trusted",
+          "accessible_resources": [ "<all_urls>" ]
+        },
+        {
+          "name": "devtools",
+          "accessible_resources": [ "<all_urls>" ]
+        }
+     ]
+  }
 }

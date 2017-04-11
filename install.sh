@@ -2,8 +2,8 @@
 
 install_path='/opt/tencent';
 current_dir=`pwd`
-desktop_dir='/usr/share/applications'
-soft_link_path='/usr/local/bin/wechat_web_devtools'
+desktop_dir='/usr/share/applications/wechat_web_devtools_old.desktop'
+soft_link_path='/usr/local/bin/wechat_web_devtools_old'
 
 # install app
 argv1=$1
@@ -15,7 +15,7 @@ if [ ! -d "$install_path" ]; then
     sudo mkdir -p $install_path
 fi
 
-app_path="${install_path}/wechat_web_devtools"
+app_path="${install_path}/wechat_web_devtools_old"
 if [ -d $app_path ]; then
  sudo rm -rf $app_path
 fi

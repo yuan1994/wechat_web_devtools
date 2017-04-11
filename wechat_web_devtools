@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd /opt/tencent/wechat_web_devtools
+cd /opt/tencent/wechat_web_devtools_old
 ./nw &

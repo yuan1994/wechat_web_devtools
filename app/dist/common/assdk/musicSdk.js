@@ -1,1 +1,0 @@
-"use strict";function init(){function e(e,t){e.args;r.getMusicPlayerState(function(e){e.errMsg="getMusicPlayerState:ok",t(e)})}function t(e,t){var i=e.args;r.operateMusicPlayer(i),t({errMsg:"operateMusicPlayer:ok"})}var r=require("../../actions/windowActions.js");_exports={getMusicPlayerState:e,operateMusicPlayer:t}}var _exports;init(),module.exports=_exports;
