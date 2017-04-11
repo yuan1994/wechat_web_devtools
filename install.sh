@@ -2,7 +2,7 @@
 
 install_path='/opt/tencent';
 current_dir=`pwd`
-desktop_dir='/usr/share/applications/wechat_web_devtools_old.desktop'
+desktop_dir='/usr/share/applications'
 soft_link_path='/usr/local/bin/wechat_web_devtools_old'
 
 # install app
@@ -37,7 +37,7 @@ EOF
 
 # create shortcut
 if [ -d "$desktop_dir" ]; then
-    sudo cp "${app_path}/wechat_web_devtools.desktop" $desktop_dir
+    sudo cp "${app_path}/wechat_web_devtools.desktop" "${desktop_dir}/wechat_web_devtools_old.desktop"
 fi
 
 # create soft link and boot application from terminal
