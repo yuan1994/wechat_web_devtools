@@ -122,7 +122,7 @@ var Pure = exports.Pure = {
 };
 
 var Flow = exports.Flow = {
-  types: ["Flow", "ImportDeclaration", "ExportDeclaration"],
+  types: ["Flow", "ImportDeclaration", "ExportDeclaration", "ImportSpecifier"],
   checkPath: function checkPath(_ref5) {
     var node = _ref5.node;
 
@@ -132,6 +132,8 @@ var Flow = exports.Flow = {
       return node.importKind === "type" || node.importKind === "typeof";
     } else if (t.isExportDeclaration(node)) {
       return node.exportKind === "type";
+    } else if (t.isImportSpecifier(node)) {
+      return node.importKind === "type" || node.importKind === "typeof";
     } else {
       return false;
     }

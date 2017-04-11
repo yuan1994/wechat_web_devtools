@@ -3,9 +3,9 @@
 exports.__esModule = true;
 
 exports.default = function (_ref) {
-  var messages = _ref.messages;
-  var template = _ref.template;
-  var t = _ref.types;
+  var messages = _ref.messages,
+      template = _ref.template,
+      t = _ref.types;
 
   var buildForOfArray = template("\n    for (var KEY = 0; KEY < ARR.length; KEY++) BODY;\n  ");
 
@@ -13,9 +13,10 @@ exports.default = function (_ref) {
 
   var buildForOf = template("\n    var ITERATOR_COMPLETION = true;\n    var ITERATOR_HAD_ERROR_KEY = false;\n    var ITERATOR_ERROR_KEY = undefined;\n    try {\n      for (var ITERATOR_KEY = OBJECT[Symbol.iterator](), STEP_KEY; !(ITERATOR_COMPLETION = (STEP_KEY = ITERATOR_KEY.next()).done); ITERATOR_COMPLETION = true) {\n      }\n    } catch (err) {\n      ITERATOR_HAD_ERROR_KEY = true;\n      ITERATOR_ERROR_KEY = err;\n    } finally {\n      try {\n        if (!ITERATOR_COMPLETION && ITERATOR_KEY.return) {\n          ITERATOR_KEY.return();\n        }\n      } finally {\n        if (ITERATOR_HAD_ERROR_KEY) {\n          throw ITERATOR_ERROR_KEY;\n        }\n      }\n    }\n  ");
 
+
   function _ForOfStatementArray(path) {
-    var node = path.node;
-    var scope = path.scope;
+    var node = path.node,
+        scope = path.scope;
 
     var nodes = [];
     var right = node.right;
@@ -99,11 +100,11 @@ exports.default = function (_ref) {
   };
 
   function loose(path, file) {
-    var node = path.node;
-    var scope = path.scope;
-
-
+    var node = path.node,
+        scope = path.scope,
+        parent = path.parent;
     var left = node.left;
+
     var declar = void 0,
         id = void 0;
 
@@ -131,17 +132,25 @@ exports.default = function (_ref) {
       loop.body.body.shift();
     }
 
+    var isLabeledParent = t.isLabeledStatement(parent);
+    var labeled = void 0;
+
+    if (isLabeledParent) {
+      labeled = t.labeledStatement(parent.label, loop);
+    }
+
     return {
+      replaceParent: isLabeledParent,
       declar: declar,
-      node: loop,
+      node: labeled || loop,
       loop: loop
     };
   }
 
   function spec(path, file) {
-    var node = path.node;
-    var scope = path.scope;
-    var parent = path.parent;
+    var node = path.node,
+        scope = path.scope,
+        parent = path.parent;
 
     var left = node.left;
     var declar = void 0;

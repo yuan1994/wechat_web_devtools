@@ -213,6 +213,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     },
     imported: {
       validate: (0, _index.assertNodeType)("Identifier")
+    },
+    importKind: {
+      validate: (0, _index.assertOneOf)(null, "type", "typeof")
     }
   }
 });

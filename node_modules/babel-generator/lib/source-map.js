@@ -22,27 +22,42 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var SourceMap = function () {
   function SourceMap(opts, code) {
-    var _this = this;
-
     (0, _classCallCheck3.default)(this, SourceMap);
 
+    this._cachedMap = null;
+    this._code = code;
     this._opts = opts;
-    this._map = new _sourceMap2.default.SourceMapGenerator({
-      file: opts.sourceMapTarget,
-      sourceRoot: opts.sourceRoot
-    });
-
-    if (typeof code === "string") {
-      this._map.setSourceContent(opts.sourceFileName, code);
-    } else if ((typeof code === "undefined" ? "undefined" : (0, _typeof3.default)(code)) === "object") {
-      (0, _keys2.default)(code).forEach(function (sourceFileName) {
-        _this._map.setSourceContent(sourceFileName, code[sourceFileName]);
-      });
-    }
+    this._rawMappings = [];
   }
 
   SourceMap.prototype.get = function get() {
-    return this._map.toJSON();
+    var _this = this;
+
+    if (!this._cachedMap) {
+      (function () {
+        var map = _this._cachedMap = new _sourceMap2.default.SourceMapGenerator({
+          file: _this._opts.sourceMapTarget,
+          sourceRoot: _this._opts.sourceRoot
+        });
+
+        var code = _this._code;
+        if (typeof code === "string") {
+          map.setSourceContent(_this._opts.sourceFileName, code);
+        } else if ((typeof code === "undefined" ? "undefined" : (0, _typeof3.default)(code)) === "object") {
+          (0, _keys2.default)(code).forEach(function (sourceFileName) {
+            map.setSourceContent(sourceFileName, code[sourceFileName]);
+          });
+        }
+
+        _this._rawMappings.forEach(map.addMapping, map);
+      })();
+    }
+
+    return this._cachedMap.toJSON();
+  };
+
+  SourceMap.prototype.getRawMappings = function getRawMappings() {
+    return this._rawMappings.slice();
   };
 
   SourceMap.prototype.mark = function mark(generatedLine, generatedColumn, line, column, identifierName, filename) {
@@ -52,18 +67,19 @@ var SourceMap = function () {
       return;
     }
 
+    this._cachedMap = null;
     this._lastGenLine = generatedLine;
     this._lastSourceLine = line;
     this._lastSourceColumn = column;
 
-    this._map.addMapping({
-      name: identifierName,
+    this._rawMappings.push({
+      name: identifierName || undefined,
       generated: {
         line: generatedLine,
         column: generatedColumn
       },
-      source: line == null ? null : filename || this._opts.sourceFileName,
-      original: line == null ? null : {
+      source: line == null ? undefined : filename || this._opts.sourceFileName,
+      original: line == null ? undefined : {
         line: line,
         column: column
       }

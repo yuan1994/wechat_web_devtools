@@ -87,8 +87,8 @@ var TEMPLATE_SKIP = (0, _symbol2.default)();
 
 function useTemplate(ast, nodes) {
   ast = (0, _cloneDeep2.default)(ast);
-  var _ast = ast;
-  var program = _ast.program;
+  var _ast = ast,
+      program = _ast.program;
 
 
   if (nodes.length) {

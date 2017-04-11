@@ -1,3 +1,7 @@
+# 2.4.0
+
+* Adds support for tab indentation (thanks to @solidflows).
+
 # 2.3.1
 
 * Better handling of trailing/leading zeroes & hex colour case transformations

@@ -293,10 +293,7 @@ exports.default = function (_ref) {
 
         if (t.isRestElement(elem)) {
           elemRef = this.toArray(arrayRef);
-
-          if (i > 0) {
-            elemRef = t.callExpression(t.memberExpression(elemRef, t.identifier("slice")), [t.numericLiteral(i)]);
-          }
+          elemRef = t.callExpression(t.memberExpression(elemRef, t.identifier("slice")), [t.numericLiteral(i)]);
 
           elem = elem.argument;
         } else {

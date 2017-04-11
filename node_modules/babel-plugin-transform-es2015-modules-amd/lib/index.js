@@ -25,8 +25,8 @@ exports.default = function (_ref) {
 
   var amdVisitor = {
     ReferencedIdentifier: function ReferencedIdentifier(_ref2) {
-      var node = _ref2.node;
-      var scope = _ref2.scope;
+      var node = _ref2.node,
+          scope = _ref2.scope;
 
       if (node.name === "exports" && !scope.getBinding("exports")) {
         this.hasExports = true;

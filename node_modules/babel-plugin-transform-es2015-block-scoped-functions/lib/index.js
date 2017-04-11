@@ -1,4 +1,4 @@
-/*istanbul ignore next*/"use strict";
+"use strict";
 
 exports.__esModule = true;
 
@@ -6,14 +6,13 @@ var _getIterator2 = require("babel-runtime/core-js/get-iterator");
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
 
-exports.default = function ( /*istanbul ignore next*/_ref) {
-  /*istanbul ignore next*/var t = _ref.types;
+exports.default = function (_ref) {
+  var t = _ref.types;
 
   function statementList(key, path) {
     var paths = path.get(key);
 
-    for ( /*istanbul ignore next*/var _iterator = paths, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0, _getIterator3.default)(_iterator);;) {
-      /*istanbul ignore next*/
+    for (var _iterator = paths, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0, _getIterator3.default)(_iterator);;) {
       var _ref2;
 
       if (_isArray) {
@@ -32,10 +31,8 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
 
       var declar = t.variableDeclaration("let", [t.variableDeclarator(func.id, t.toExpression(func))]);
 
-      // hoist it up above everything else
       declar._blockHoist = 2;
 
-      // todo: name this
       func.id = null;
 
       _path.replaceWith(declar);
@@ -43,10 +40,10 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
   }
 
   return {
-    visitor: { /*istanbul ignore next*/
+    visitor: {
       BlockStatement: function BlockStatement(path) {
-        /*istanbul ignore next*/var node = path.node;
-        /*istanbul ignore next*/var parent = path.parent;
+        var node = path.node,
+            parent = path.parent;
 
         if (t.isFunction(parent, { body: node }) || t.isExportDeclaration(parent)) {
           return;
@@ -54,14 +51,13 @@ exports.default = function ( /*istanbul ignore next*/_ref) {
 
         statementList("body", path);
       },
-      /*istanbul ignore next*/SwitchCase: function SwitchCase(path) {
+      SwitchCase: function SwitchCase(path) {
         statementList("consequent", path);
       }
     }
   };
 };
 
-/*istanbul ignore next*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports["default"];

@@ -15,9 +15,7 @@ function TemplateElement(node, parent) {
 
   var value = (isFirst ? "`" : "}") + node.value.raw + (isLast ? "`" : "${");
 
-  if (!isFirst) this.space();
   this.token(value);
-  if (!isLast) this.space();
 }
 
 function TemplateLiteral(node) {

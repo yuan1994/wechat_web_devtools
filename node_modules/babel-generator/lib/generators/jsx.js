@@ -12,6 +12,7 @@ exports.JSXNamespacedName = JSXNamespacedName;
 exports.JSXMemberExpression = JSXMemberExpression;
 exports.JSXSpreadAttribute = JSXSpreadAttribute;
 exports.JSXExpressionContainer = JSXExpressionContainer;
+exports.JSXSpreadChild = JSXSpreadChild;
 exports.JSXText = JSXText;
 exports.JSXElement = JSXElement;
 exports.JSXOpeningElement = JSXOpeningElement;
@@ -53,6 +54,13 @@ function JSXSpreadAttribute(node) {
 
 function JSXExpressionContainer(node) {
   this.token("{");
+  this.print(node.expression, node);
+  this.token("}");
+}
+
+function JSXSpreadChild(node) {
+  this.token("{");
+  this.token("...");
   this.print(node.expression, node);
   this.token("}");
 }

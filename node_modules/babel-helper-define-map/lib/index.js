@@ -1,6 +1,11 @@
 "use strict";
 
 exports.__esModule = true;
+
+var _keys = require("babel-runtime/core-js/object/keys");
+
+var _keys2 = _interopRequireDefault(_keys);
+
 exports.push = push;
 exports.hasComputed = hasComputed;
 exports.toComputedObjectFromClass = toComputedObjectFromClass;
@@ -10,10 +15,6 @@ exports.toDefineObject = toDefineObject;
 var _babelHelperFunctionName = require("babel-helper-function-name");
 
 var _babelHelperFunctionName2 = _interopRequireDefault(_babelHelperFunctionName);
-
-var _each = require("lodash/each");
-
-var _each2 = _interopRequireDefault(_each);
 
 var _has = require("lodash/has");
 
@@ -120,12 +121,14 @@ function toComputedObjectFromClass(obj) {
 function toClassObject(mutatorMap) {
   var objExpr = t.objectExpression([]);
 
-  (0, _each2.default)(mutatorMap, function (map) {
+  (0, _keys2.default)(mutatorMap).forEach(function (mutatorMapKey) {
+    var map = mutatorMap[mutatorMapKey];
     var mapNode = t.objectExpression([]);
 
     var propNode = t.objectProperty(map._key, mapNode, map._computed);
 
-    (0, _each2.default)(map, function (node, key) {
+    (0, _keys2.default)(map).forEach(function (key) {
+      var node = map[key];
       if (key[0] === "_") return;
 
       var inheritNode = node;
@@ -145,7 +148,8 @@ function toClassObject(mutatorMap) {
 }
 
 function toDefineObject(mutatorMap) {
-  (0, _each2.default)(mutatorMap, function (map) {
+  (0, _keys2.default)(mutatorMap).forEach(function (key) {
+    var map = mutatorMap[key];
     if (map.value) map.writable = t.booleanLiteral(true);
     map.configurable = t.booleanLiteral(true);
     map.enumerable = t.booleanLiteral(true);

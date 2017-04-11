@@ -2,22 +2,7 @@
 
 exports.__esModule = true;
 var hooks = exports.hooks = [function (self, parent) {
-  if (self.key === "body" && parent.isArrowFunctionExpression()) {
-    self.replaceWith(self.scope.buildUndefinedNode());
-    return true;
-  }
-}, function (self, parent) {
-  var removeParent = false;
-
-  removeParent = removeParent || self.key === "test" && (parent.isWhile() || parent.isSwitchCase());
-
-  removeParent = removeParent || self.key === "declaration" && parent.isExportDeclaration();
-
-  removeParent = removeParent || self.key === "body" && parent.isLabeledStatement();
-
-  removeParent = removeParent || self.listKey === "declarations" && parent.isVariableDeclaration() && parent.node.declarations.length === 1;
-
-  removeParent = removeParent || self.key === "expression" && parent.isExpressionStatement();
+  var removeParent = self.key === "test" && (parent.isWhile() || parent.isSwitchCase()) || self.key === "declaration" && parent.isExportDeclaration() || self.key === "body" && parent.isLabeledStatement() || self.listKey === "declarations" && parent.isVariableDeclaration() && parent.node.declarations.length === 1 || self.key === "expression" && parent.isExpressionStatement();
 
   if (removeParent) {
     parent.remove();
@@ -38,7 +23,7 @@ var hooks = exports.hooks = [function (self, parent) {
     return true;
   }
 }, function (self, parent) {
-  if (parent.isIfStatement() && (self.key === "consequent" || self.key === "alternate") || parent.isLoop() && self.key === "body") {
+  if (parent.isIfStatement() && (self.key === "consequent" || self.key === "alternate") || self.key === "body" && (parent.isLoop() || parent.isArrowFunctionExpression())) {
     self.replaceWith({
       type: "BlockStatement",
       body: []

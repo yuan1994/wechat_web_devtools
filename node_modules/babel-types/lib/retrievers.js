@@ -38,8 +38,8 @@ function getBindingIdentifiers(node, duplicates, outerOnly) {
     }
 
     if (t.isExportDeclaration(id)) {
-      if (t.isDeclaration(node.declaration)) {
-        search.push(node.declaration);
+      if (t.isDeclaration(id.declaration)) {
+        search.push(id.declaration);
       }
       continue;
     }

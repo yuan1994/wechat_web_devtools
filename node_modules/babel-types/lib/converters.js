@@ -28,17 +28,9 @@ var _isPlainObject = require("lodash/isPlainObject");
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _isNumber = require("lodash/isNumber");
-
-var _isNumber2 = _interopRequireDefault(_isNumber);
-
 var _isRegExp = require("lodash/isRegExp");
 
 var _isRegExp2 = _interopRequireDefault(_isRegExp);
-
-var _isString = require("lodash/isString");
-
-var _isString2 = _interopRequireDefault(_isString);
 
 var _index = require("./index");
 
@@ -310,11 +302,11 @@ function valueToNode(value) {
     return t.nullLiteral();
   }
 
-  if ((0, _isString2.default)(value)) {
+  if (typeof value === "string") {
     return t.stringLiteral(value);
   }
 
-  if ((0, _isNumber2.default)(value)) {
+  if (typeof value === "number") {
     return t.numericLiteral(value);
   }
 

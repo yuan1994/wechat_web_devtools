@@ -3,10 +3,10 @@
 exports.__esModule = true;
 
 exports.default = function (_ref) {
-  var node = _ref.node;
-  var parent = _ref.parent;
-  var scope = _ref.scope;
-  var id = _ref.id;
+  var node = _ref.node,
+      parent = _ref.parent,
+      scope = _ref.scope,
+      id = _ref.id;
 
   if (node.id) return;
 

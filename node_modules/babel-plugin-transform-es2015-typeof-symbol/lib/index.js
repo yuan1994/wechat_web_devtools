@@ -23,8 +23,8 @@ exports.default = function (_ref) {
         scope.rename("Symbol");
       },
       UnaryExpression: function UnaryExpression(path) {
-        var node = path.node;
-        var parent = path.parent;
+        var node = path.node,
+            parent = path.parent;
 
         if (node[IGNORE]) return;
         if (path.find(function (path) {

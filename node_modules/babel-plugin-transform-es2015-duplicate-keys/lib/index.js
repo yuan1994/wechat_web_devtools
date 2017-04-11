@@ -1,4 +1,4 @@
-/*istanbul ignore next*/"use strict";
+"use strict";
 
 exports.__esModule = true;
 
@@ -12,28 +12,19 @@ var _create2 = _interopRequireDefault(_create);
 
 exports.default = function () {
   return {
-    visitor: { /*istanbul ignore next*/
+    visitor: {
       ObjectExpression: function ObjectExpression(path) {
-        /*istanbul ignore next*/var node = path.node;
+        var node = path.node;
 
-        var plainProps = node.properties.filter(function (prop) /*istanbul ignore next*/{
+        var plainProps = node.properties.filter(function (prop) {
           return !t.isSpreadProperty(prop) && !prop.computed;
         });
 
-        // A property is a duplicate key if:
-        // * the property is a data property, and is preceeded by a data,
-        //   getter, or setter property of the same name.
-        // * the property is a getter property, and is preceeded by a data or
-        //   getter property of the same name.
-        // * the property is a setter property, and is preceeded by a data or
-        //   setter property of the same name.
+        var alreadySeenData = (0, _create2.default)(null);
+        var alreadySeenGetters = (0, _create2.default)(null);
+        var alreadySeenSetters = (0, _create2.default)(null);
 
-        var alreadySeenData = /*istanbul ignore next*/(0, _create2.default)(null);
-        var alreadySeenGetters = /*istanbul ignore next*/(0, _create2.default)(null);
-        var alreadySeenSetters = /*istanbul ignore next*/(0, _create2.default)(null);
-
-        for ( /*istanbul ignore next*/var _iterator = plainProps, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0, _getIterator3.default)(_iterator);;) {
-          /*istanbul ignore next*/
+        for (var _iterator = plainProps, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0, _getIterator3.default)(_iterator);;) {
           var _ref;
 
           if (_isArray) {
@@ -70,8 +61,6 @@ exports.default = function () {
           }
 
           if (isDuplicate) {
-            // Rely on the computed properties transform to split the property
-            // assignment out of the object literal.
             prop.computed = true;
             prop.key = t.stringLiteral(name);
           }
@@ -81,12 +70,10 @@ exports.default = function () {
   };
 };
 
-var /*istanbul ignore next*/_babelTypes = require("babel-types");
+var _babelTypes = require("babel-types");
 
-/*istanbul ignore next*/
 var t = _interopRequireWildcard(_babelTypes);
 
-/*istanbul ignore next*/
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -98,4 +85,4 @@ function getName(key) {
   return key.value.toString();
 }
 
-/*istanbul ignore next*/module.exports = exports["default"];
+module.exports = exports["default"];

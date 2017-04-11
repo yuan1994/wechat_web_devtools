@@ -5,6 +5,8 @@ exports.shareCommentsWithSiblings = shareCommentsWithSiblings;
 exports.addComment = addComment;
 exports.addComments = addComments;
 function shareCommentsWithSiblings() {
+  if (typeof this.key === "string") return;
+
   var node = this.node;
   if (!node) return;
 

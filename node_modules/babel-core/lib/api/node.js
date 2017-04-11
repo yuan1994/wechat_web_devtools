@@ -1,7 +1,7 @@
 "use strict";
 
 exports.__esModule = true;
-exports.transformFromAst = exports.transform = exports.analyse = exports.Pipeline = exports.OptionManager = exports.traverse = exports.types = exports.messages = exports.util = exports.version = exports.template = exports.buildExternalHelpers = exports.options = exports.File = undefined;
+exports.transformFromAst = exports.transform = exports.analyse = exports.Pipeline = exports.OptionManager = exports.traverse = exports.types = exports.messages = exports.util = exports.version = exports.resolvePreset = exports.resolvePlugin = exports.template = exports.buildExternalHelpers = exports.options = exports.File = undefined;
 
 var _file = require("../transformation/file");
 
@@ -39,6 +39,24 @@ Object.defineProperty(exports, "template", {
   }
 });
 
+var _resolvePlugin = require("../helpers/resolve-plugin");
+
+Object.defineProperty(exports, "resolvePlugin", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_resolvePlugin).default;
+  }
+});
+
+var _resolvePreset = require("../helpers/resolve-preset");
+
+Object.defineProperty(exports, "resolvePreset", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_resolvePreset).default;
+  }
+});
+
 var _package = require("../../package");
 
 Object.defineProperty(exports, "version", {
@@ -50,10 +68,6 @@ Object.defineProperty(exports, "version", {
 exports.Plugin = Plugin;
 exports.transformFile = transformFile;
 exports.transformFileSync = transformFileSync;
-
-var _isFunction = require("lodash/isFunction");
-
-var _isFunction2 = _interopRequireDefault(_isFunction);
 
 var _fs = require("fs");
 
@@ -105,7 +119,7 @@ var transform = exports.transform = pipeline.transform.bind(pipeline);
 var transformFromAst = exports.transformFromAst = pipeline.transformFromAst.bind(pipeline);
 
 function transformFile(filename, opts, callback) {
-  if ((0, _isFunction2.default)(opts)) {
+  if (typeof opts === "function") {
     callback = opts;
     opts = {};
   }

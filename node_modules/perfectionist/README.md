@@ -113,6 +113,13 @@ Pass either `expanded`, `compact` or `compressed`. Note that the `compressed`
 format only facilitates simple whitespace compression around selectors &
 declarations. For more powerful compression, see [cssnano].
 
+##### indentChar
+
+Type: `string`
+Default: ` ` (space)
+
+Specify `\t` here instead if you would like to use tabs for indentation.
+
 ##### indentSize
 
 Type: `number`

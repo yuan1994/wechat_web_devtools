@@ -44,10 +44,6 @@ var _babelTemplate = require("babel-template");
 
 var _babelTemplate2 = _interopRequireDefault(_babelTemplate);
 
-var _each = require("lodash/each");
-
-var _each2 = _interopRequireDefault(_each);
-
 var _babelTypes = require("babel-types");
 
 var t = _interopRequireWildcard(_babelTypes);
@@ -95,7 +91,7 @@ function buildVar(namespace, builder) {
 }
 
 function buildHelpers(body, namespace, whitelist) {
-  (0, _each2.default)(helpers.list, function (name) {
+  helpers.list.forEach(function (name) {
     if (whitelist && whitelist.indexOf(name) < 0) return;
 
     var key = t.identifier(name);

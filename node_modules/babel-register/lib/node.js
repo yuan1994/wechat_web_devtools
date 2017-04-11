@@ -2,6 +2,10 @@
 
 exports.__esModule = true;
 
+var _keys = require("babel-runtime/core-js/object/keys");
+
+var _keys2 = _interopRequireDefault(_keys);
+
 var _stringify = require("babel-runtime/core-js/json/stringify");
 
 var _stringify2 = _interopRequireDefault(_stringify);
@@ -43,10 +47,6 @@ var _extend2 = _interopRequireDefault(_extend);
 var _babelCore = require("babel-core");
 
 var babel = _interopRequireWildcard(_babelCore);
-
-var _each = require("lodash/each");
-
-var _each2 = _interopRequireDefault(_each);
 
 var _fs = require("fs");
 
@@ -157,7 +157,8 @@ function registerExtension(ext) {
 }
 
 function hookExtensions(_exts) {
-  (0, _each2.default)(oldHandlers, function (old, ext) {
+  (0, _keys2.default)(oldHandlers).forEach(function (ext) {
+    var old = oldHandlers[ext];
     if (old === undefined) {
       delete require.extensions[ext];
     } else {
@@ -167,7 +168,7 @@ function hookExtensions(_exts) {
 
   oldHandlers = {};
 
-  (0, _each2.default)(_exts, function (ext) {
+  _exts.forEach(function (ext) {
     oldHandlers[ext] = require.extensions[ext];
     registerExtension(ext);
   });

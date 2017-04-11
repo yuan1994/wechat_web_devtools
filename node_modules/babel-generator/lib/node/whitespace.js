@@ -1,13 +1,5 @@
 "use strict";
 
-var _isBoolean = require("lodash/isBoolean");
-
-var _isBoolean2 = _interopRequireDefault(_isBoolean);
-
-var _each = require("lodash/each");
-
-var _each2 = _interopRequireDefault(_each);
-
 var _map = require("lodash/map");
 
 var _map2 = _interopRequireDefault(_map);
@@ -144,19 +136,14 @@ exports.list = {
   }
 };
 
-(0, _each2.default)({
-  Function: true,
-  Class: true,
-  Loop: true,
-  LabeledStatement: true,
-  SwitchStatement: true,
-  TryStatement: true
-}, function (amounts, type) {
-  if ((0, _isBoolean2.default)(amounts)) {
+[["Function", true], ["Class", true], ["Loop", true], ["LabeledStatement", true], ["SwitchStatement", true], ["TryStatement", true]].forEach(function (_ref) {
+  var type = _ref[0],
+      amounts = _ref[1];
+
+  if (typeof amounts === "boolean") {
     amounts = { after: amounts, before: amounts };
   }
-
-  (0, _each2.default)([type].concat(t.FLIPPED_ALIAS_KEYS[type] || []), function (type) {
+  [type].concat(t.FLIPPED_ALIAS_KEYS[type] || []).forEach(function (type) {
     exports.nodes[type] = function () {
       return amounts;
     };

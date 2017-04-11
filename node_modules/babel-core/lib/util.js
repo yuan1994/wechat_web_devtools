@@ -36,10 +36,6 @@ var _startsWith = require("lodash/startsWith");
 
 var _startsWith2 = _interopRequireDefault(_startsWith);
 
-var _isBoolean = require("lodash/isBoolean");
-
-var _isBoolean2 = _interopRequireDefault(_isBoolean);
-
 var _minimatch = require("minimatch");
 
 var _minimatch2 = _interopRequireDefault(_minimatch);
@@ -47,10 +43,6 @@ var _minimatch2 = _interopRequireDefault(_minimatch);
 var _includes = require("lodash/includes");
 
 var _includes2 = _interopRequireDefault(_includes);
-
-var _isString = require("lodash/isString");
-
-var _isString2 = _interopRequireDefault(_isString);
 
 var _isRegExp = require("lodash/isRegExp");
 
@@ -114,8 +106,8 @@ function regexify(val) {
 
 function arrayify(val, mapFn) {
   if (!val) return [];
-  if ((0, _isBoolean2.default)(val)) return arrayify([val], mapFn);
-  if ((0, _isString2.default)(val)) return arrayify(list(val), mapFn);
+  if (typeof val === "boolean") return arrayify([val], mapFn);
+  if (typeof val === "string") return arrayify(list(val), mapFn);
 
   if (Array.isArray(val)) {
     if (mapFn) val = val.map(mapFn);

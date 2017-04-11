@@ -318,17 +318,9 @@ var _toFastProperties = require("to-fast-properties");
 
 var _toFastProperties2 = _interopRequireDefault(_toFastProperties);
 
-var _compact = require("lodash/compact");
-
-var _compact2 = _interopRequireDefault(_compact);
-
 var _clone = require("lodash/clone");
 
 var _clone2 = _interopRequireDefault(_clone);
-
-var _each = require("lodash/each");
-
-var _each2 = _interopRequireDefault(_each);
 
 var _uniq = require("lodash/uniq");
 
@@ -378,15 +370,15 @@ for (var type in t.VISITOR_KEYS) {
 
 t.FLIPPED_ALIAS_KEYS = {};
 
-(0, _each2.default)(t.ALIAS_KEYS, function (aliases, type) {
-  (0, _each2.default)(aliases, function (alias) {
+(0, _keys2.default)(t.ALIAS_KEYS).forEach(function (type) {
+  t.ALIAS_KEYS[type].forEach(function (alias) {
     var types = t.FLIPPED_ALIAS_KEYS[alias] = t.FLIPPED_ALIAS_KEYS[alias] || [];
     types.push(type);
   });
 });
 
-(0, _each2.default)(t.FLIPPED_ALIAS_KEYS, function (types, type) {
-  t[type.toUpperCase() + "_TYPES"] = types;
+(0, _keys2.default)(t.FLIPPED_ALIAS_KEYS).forEach(function (type) {
+  t[type.toUpperCase() + "_TYPES"] = t.FLIPPED_ALIAS_KEYS[type];
   registerType(type);
 });
 
@@ -435,7 +427,9 @@ function isType(nodeType, targetType) {
   return false;
 }
 
-(0, _each2.default)(t.BUILDER_KEYS, function (keys, type) {
+(0, _keys2.default)(t.BUILDER_KEYS).forEach(function (type) {
+  var keys = t.BUILDER_KEYS[type];
+
   function builder() {
     if (arguments.length > keys.length) {
       throw new Error("t." + type + ": Too many arguments passed. Received " + arguments.length + " but can receive " + ("no more than " + keys.length));
@@ -675,7 +669,7 @@ function inheritInnerComments(child, parent) {
 
 function _inheritComments(key, child, parent) {
   if (child && parent) {
-    child[key] = (0, _uniq2.default)((0, _compact2.default)([].concat(child[key], parent[key])));
+    child[key] = (0, _uniq2.default)([].concat(child[key], parent[key]).filter(Boolean));
   }
 }
 

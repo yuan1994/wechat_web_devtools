@@ -1,10 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=WeChat Web DevTools
+Key=WeChat;Web;Dev;
 Comment=The development tools for wechat web develop
 Exec=/opt/tencent/wechat_web_devtools/wechat_web_devtools
 Icon=/opt/tencent/wechat_web_devtools/app/images/logo2.png
-Categories=Application;WeChat
-Version=0.11.122100
+Categories=Application;WeChat;Development;
+Version=0.15.152900
 Type=Application
-Terminal=0
+Terminal=false
+StartupNotify=true
